@@ -1,12 +1,24 @@
 import { NavLink } from 'react-router';
+import { useTheme } from '../../context/ThemeContext.jsx';
+import { useContext } from 'react';
+import { BookingContext } from '../../context/BookingContext.jsx';
 
 const NavBar = () => {
+  const { theme, setTheme } = useTheme();
+  const { bookingState } = useContext(BookingContext);
+
   return (
-    <div className='navbar bg-base-100 shadow-sm'>
+    <div className='navbar bg-base-100 shadow-sm' data-theme={theme}>
       <div className='flex-1'>
         <a className='btn btn-ghost text-xl' href='/'>
-          Travel Agency
+          {bookingState.premium ? 'Thank You' : 'Travel Agency'}
         </a>
+        <select defaultValue={theme} className='select' onChange={(e) => setTheme(e.target.value)}>
+          <option value='halloween'>Halloween</option>
+          <option value='retro'>Retro</option>
+          <option value='cyberpunk'>Cyberpunk</option>
+          <option value='dim'>Dim</option>
+        </select>
       </div>
       <nav className='flex-none'>
         <ul className='menu menu-horizontal px-1'>

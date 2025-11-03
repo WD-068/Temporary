@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function MainLayout() {
   const [destinations, setDestinations] = useState(null);
+  const [theme, setTheme] = useState('halloween');
 
   useEffect(() => {
     fetch('/travel.json')
@@ -13,7 +14,7 @@ export default function MainLayout() {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <NavBar />
+      <NavBar theme={theme} setTheme={setTheme} />
       <main className='container mx-auto px-4 py-8 mb-auto'>
         {destinations ? <Outlet context={destinations} /> : <span className='loading loading-dots loading-xl'></span>}
       </main>

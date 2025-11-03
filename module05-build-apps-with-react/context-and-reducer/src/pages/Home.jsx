@@ -10,6 +10,8 @@ const Home = () => {
     navigate('/destinations');
   };
 
+  console.log('HOME rendering');
+
   return (
     <div className='space-y-16'>
       <section className='text-center space-y-4'>
